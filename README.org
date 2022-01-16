@@ -46,7 +46,7 @@ import XMonad.Layout.SimplestFloat
 import XMonad.Layout.NoBorders
 import XMonad.Layout.ResizableTile
 #+end_src
-** Actions
+** Utils
 #+begin_src haskell
 import XMonad.Util.SpawnOnce
 import XMonad.Util.Run
