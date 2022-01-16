@@ -15,11 +15,11 @@ Config { font = "xft:Mononoki:pixelsize=16:antialias=true:hinting=false"
        , allDesktops = True
        , persistent = True
        , commands = [ Run Date "%a, %b %d %Y, %H:%M:%S" "date" 10
-		            , Run Com "uname" ["-r"] "" 3600
+		    , Run Com "uname" ["-r"] "" 3600
                     , Run Cpu ["-t", "cpu <bar> (<total>%)","-H","50","--high","red"] 10
                     , Run Memory ["-t", " mem <usedbar> (<usedratio>%)"] 10
                     , Run DiskU [("/", " hdd <usedbar> (<used>)")] [] 3600
-		            , Run UnsafeStdinReader
+		    , Run UnsafeStdinReader
                     ]
        , sepChar = "%"
        , alignSep = "}{"
