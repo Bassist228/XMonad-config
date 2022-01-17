@@ -111,7 +111,7 @@ main = do
                 , manageHook         = myManageHook
                 , logHook            = dynamicLogWithPP $
                     xmobarPP {
-                              ppOutput = hPutStrLn xmproc
+                               ppOutput = hPutStrLn xmproc
                              , ppTitle = xmobarColor "#FFFFFF" "" . shorten 100
                              , ppCurrent = xmobarColor "#7aa2f7" ""
                              , ppSep = "   "
