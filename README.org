@@ -175,5 +175,6 @@ main = do
                                , ppCurrent = xmobarColor "#7aa2f7" ""
                                , ppSep = "   "
                                , ppOrder  = \(ws : l : _ : _ ) -> [ws,l]
-                              }
+                               }
+                } `additionalKeysP` myKeys
 #+end_src
