@@ -169,12 +169,12 @@ main = do
                   , layoutHook         = myLayoutHook
                   , manageHook         = myManageHook
                   , logHook            = dynamicLogWithPP $
-                  , keys               = myKeys
                       xmobarPP {
                                  ppOutput = hPutStrLn xmproc
                                , ppTitle = xmobarColor "#AAAAAA" "" . shorten 100
                                , ppCurrent = xmobarColor "#7aa2f7" ""
                                , ppSep = "   "
                                , ppOrder  = \(ws : l : _ : _ ) -> [ws,l]
-                              }
+                               }
+                      } `additionalKeysP` myKeys
 #+end_src
