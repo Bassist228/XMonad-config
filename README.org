@@ -19,7 +19,7 @@
   - [[#terminal-and-terminal-apps][Terminal and terminal apps]]
 - [[#startup-hooks][Startup Hooks]]
 - [[#layouts-1][Layouts]]
-- [[#other][Other]]
+- [[#main][Main]]
 
 * Imports
 ** Base
@@ -46,7 +46,7 @@ import XMonad.Layout.SimplestFloat
 import XMonad.Layout.NoBorders
 import XMonad.Layout.ResizableTile
 #+end_src
-** Utils
+** Actions
 #+begin_src haskell
 import XMonad.Util.SpawnOnce
 import XMonad.Util.Run
@@ -142,7 +142,7 @@ myKeys =
 * Startup Hooks
 #+begin_src haskell
 myStartupHook = do
-    --spawnOnce "lxsession"
+    spawnOnce "lxpolkit"
     spawnOnce "picom --experimental-backend &"
     setWMName "LG3D"
     spawnOnce "~/.fehbg &"
@@ -156,7 +156,7 @@ bsp =  spacingRaw True (Border 0 0 0 0) True (Border 5 5 5 5) True $ gaps [(U,29
 
 myLayoutHook = tall ||| noBorders tall |||  bsp ||| noBorders Full ||| simplestFloat
 #+end_src
-* Other
+* Main
 #+begin_src haskell
 main = do
       xmproc <- spawnPipe "dbus-launch xmobar -d"
@@ -169,12 +169,12 @@ main = do
                   , layoutHook         = myLayoutHook
                   , manageHook         = myManageHook
                   , logHook            = dynamicLogWithPP $
+                  , keys               = myKeys
                       xmobarPP {
                                  ppOutput = hPutStrLn xmproc
-                               , ppTitle = xmobarColor "#FFFFFF" "" . shorten 100
+                               , ppTitle = xmobarColor "#AAAAAA" "" . shorten 100
                                , ppCurrent = xmobarColor "#7aa2f7" ""
                                , ppSep = "   "
                                , ppOrder  = \(ws : l : _ : _ ) -> [ws,l]
-                               }
-                } `additionalKeysP` myKeys
+                              }
 #+end_src

@@ -45,7 +45,7 @@ myFocusedBorderColor = "#f43e5c"
 
 myHandleEventHook = swallowEventHook (className =? "Alacritty" <||> className =? "Termite") (return True)
 myManageHook = composeAll
-    [  className =? "mpv"             --> doFloat
+    [  className =? "vlc"             --> doFloat
      , className =? "Gimp"            --> doFloat
      , className =? "feh"             --> doFloat
      , className =? "confirm"         --> doFloat
@@ -53,6 +53,7 @@ myManageHook = composeAll
      , className =? "dialog"          --> doFloat
      , className =? "download"        --> doFloat
      , className =? "error"           --> doFloat
+     , className =? "Gimp"            --> doFloat
      , className =? "notification"    --> doFloat
      , className =? "splash"          --> doFloat
      , className =? "toolbar"         --> doFloat
@@ -87,7 +88,7 @@ myKeys =
  ]
 
 myStartupHook = do
-    --spawnOnce "lxsession"
+    spawnOnce "lxpolkit"
     spawnOnce "picom --experimental-backend &"
     setWMName "LG3D"
     spawnOnce "~/.fehbg &"
@@ -102,19 +103,19 @@ myLayoutHook = tall ||| noBorders tall |||  bsp ||| noBorders Full ||| simplestF
 main = do
       xmproc <- spawnPipe "dbus-launch xmobar -d"
       xmonad $ docks def {
-                  startupHook        = myStartupHook
-                , modMask            = mod4Mask
-                , borderWidth        = myBorderWidth
-                , normalBorderColor  = myNormalBorderColor
-                , focusedBorderColor = myFocusedBorderColor
-                , layoutHook         = myLayoutHook
-                , manageHook         = myManageHook
-                , logHook            = dynamicLogWithPP $
-                    xmobarPP {
-                               ppOutput = hPutStrLn xmproc
-                             , ppTitle = xmobarColor "#FFFFFF" "" . shorten 100
-                             , ppCurrent = xmobarColor "#7aa2f7" ""
-                             , ppSep = "   "
-                             , ppOrder  = \(ws : l : _ : _ ) -> [ws,l]
-                            }
-                } `additionalKeysP` myKeys
+                    startupHook        = myStartupHook
+                  , modMask            = mod4Mask
+                  , borderWidth        = myBorderWidth
+                  , normalBorderColor  = myNormalBorderColor
+                  , focusedBorderColor = myFocusedBorderColor
+                  , layoutHook         = myLayoutHook
+                  , manageHook         = myManageHook
+                  , logHook            = dynamicLogWithPP $
+                  , keys               = myKeys
+                      xmobarPP {
+                                 ppOutput = hPutStrLn xmproc
+                               , ppTitle = xmobarColor "#AAAAAA" "" . shorten 100
+                               , ppCurrent = xmobarColor "#7aa2f7" ""
+                               , ppSep = "   "
+                               , ppOrder  = \(ws : l : _ : _ ) -> [ws,l]
+                              }
