@@ -88,11 +88,13 @@ myKeys =
  ]
 
 myStartupHook = do
+    spawn "killall trayer"
     spawnOnce "lxpolkit"
     spawnOnce "picom --experimental-backend &"
     setWMName "LG3D"
     spawnOnce "~/.fehbg &"
     spawnOnce "/usr/bin/emacs --daemon"
+    spawn "sleep 2 && trayer --edge top --align right --widthtype request --padding 6 --SetDockType true --SetPartialStrut true --expand true  --transparent true --alpha 0 --tint 0x1C1E26 --height 22"
 
 tall =  spacingRaw True (Border 0 0 0 0) True (Border 5 5 5 5) True $ gaps [(U,29), (R,10), (L,10), (D,10)] $ avoidStruts $ Tall 1 (3/100) (50/100)
 
