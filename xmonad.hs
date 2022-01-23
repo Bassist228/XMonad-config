@@ -45,18 +45,18 @@ myFocusedBorderColor = "#f43e5c"
 
 myHandleEventHook = swallowEventHook (className =? "Alacritty" <||> className =? "Termite") (return True)
 myManageHook = composeAll
-    [  className =? "vlc"             --> doFloat
-     , className =? "Gimp"            --> doFloat
-     , className =? "feh"             --> doFloat
-     , className =? "confirm"         --> doFloat
-     , className =? "file_progress"   --> doFloat
-     , className =? "dialog"          --> doFloat
-     , className =? "download"        --> doFloat
-     , className =? "error"           --> doFloat
-     , className =? "Gimp"            --> doFloat
-     , className =? "notification"    --> doFloat
-     , className =? "splash"          --> doFloat
-     , className =? "toolbar"         --> doFloat
+    [  className =? "vlc"             --> doCenterFloat
+     , className =? "Gimp"            --> doCenterFloat
+     , className =? "feh"             --> doCenterFloat
+     , className =? "confirm"         --> doCenterFloat
+     , className =? "file_progress"   --> doCenterFloat
+     , className =? "dialog"          --> doCenterFloat
+     , className =? "download"        --> doCenterFloat
+     , className =? "error"           --> doCenterFloat
+     , className =? "Gimp"            --> doCenterFloat
+     , className =? "notification"    --> doCenterFloat
+     , className =? "splash"          --> doCenterFloat
+     , className =? "toolbar"         --> doCenterFloat
      , (className =? "firefox" <&&> resource =? "Dialog") --> doFloat  -- Float Firefox Dialog
     ]
 
@@ -89,10 +89,10 @@ myKeys =
 
 myStartupHook = do
     spawn "killall trayer"
-    spawnOnce "lxpolkit"
+    spawnOnce "lxpolkit &"
     spawnOnce "picom --experimental-backend &"
     setWMName "LG3D"
-    spawnOnce "~/.fehbg &"
+    spawnOnce "nitrogen --restore &"
     spawnOnce "/usr/bin/emacs --daemon"
     spawn "sleep 2 && trayer --edge top --align right --widthtype request --padding 6 --SetDockType true --SetPartialStrut true --expand true  --transparent true --alpha 0 --tint 0x1C1E26 --height 22"
 
