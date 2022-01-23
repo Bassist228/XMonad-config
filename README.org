@@ -147,6 +147,8 @@ myStartupHook = do
     spawnOnce "picom --experimental-backend &"
     setWMName "LG3D"
     spawnOnce "nitrogen --restore &"
+    spawnOnce "volumeicon"
+    spawnOnce "blueman-applet"
     spawnOnce "/usr/bin/emacs --daemon"
     spawn "sleep 2 && trayer --edge top --align right --widthtype request --padding 6 --SetDockType true --SetPartialStrut true --expand true  --transparent true --alpha 0 --tint 0x1C1E26 --height 22"
 #+end_src
